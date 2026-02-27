@@ -1,5 +1,7 @@
 package com.Apps.quantitymeasurement;
 
+import com.Apps.quantitymeasurement.Length.LengthUnit;
+
 public class QuantityMeasurementApp {
     public static boolean demonstrateLengthEquality(Length length1, Length length2) {
         return length1.equals(length2);
@@ -11,8 +13,21 @@ public class QuantityMeasurementApp {
         Length length1 = new Length(value1, unit1);
         Length length2 = new Length(value2, unit2);
         boolean result = demonstrateLengthEquality(length1, length2);
-        System.out.println(value1 + " " + unit1 +" == " + value2 + " " + unit2 + " ? " + result);
+        System.out.println(value1 + " " + unit1 + " == " + value2 + " " + unit2 + " ? " + result);
         return result;
+    }
+    
+    public static Length demonstrateLengthConversion(double value, Length.LengthUnit fromUnit, Length.LengthUnit toUnit) {
+    	Length fromLength = new Length(value, fromUnit);
+    	Length toLength = fromLength.convertTo(toUnit);
+    	System.out.println(fromLength + " -> " + toLength);
+    	return toLength;
+    }
+    
+    public static Length demonstrateLengthConversion(Length length, Length.LengthUnit toUnit) {
+    	Length convertedLength = length.convertTo(toUnit);
+    	System.out.println(length + " -> " + convertedLength);
+    	return convertedLength;
     }
 
     public static void main(String[] args) {
@@ -45,5 +60,22 @@ public class QuantityMeasurementApp {
                 30.48, Length.LengthUnit.CENTIMETERS,
                 1.0, Length.LengthUnit.FEET
         );
+        
+        // Demonstrate Conversion from Centimeters to Feet
+        demonstrateLengthConversion(
+        		30, Length.LengthUnit.CENTIMETERS,
+        		Length.LengthUnit.FEET
+        );
+        
+        // Demonstrate Conversion from Yards to Inches
+        demonstrateLengthConversion(
+        		500, LengthUnit.YARDS,
+        		LengthUnit.INCHES
+        );
+        
+        // Demonstrate conversion from Feet to Inches
+        Length fromLength = new Length(502, LengthUnit.FEET);
+        demonstrateLengthConversion(fromLength, LengthUnit.INCHES);
+        
     }
 }
