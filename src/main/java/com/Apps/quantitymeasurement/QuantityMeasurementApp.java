@@ -3,6 +3,7 @@ package com.Apps.quantitymeasurement;
 import com.Apps.quantitymeasurement.Length.LengthUnit;
 
 public class QuantityMeasurementApp {
+
     public static boolean demonstrateLengthEquality(Length length1, Length length2) {
         return length1.equals(length2);
     }
@@ -10,10 +11,14 @@ public class QuantityMeasurementApp {
     public static boolean demonstrateLengthComparison(
             double value1, Length.LengthUnit unit1,
             double value2, Length.LengthUnit unit2) {
+
         Length length1 = new Length(value1, unit1);
         Length length2 = new Length(value2, unit2);
+
         boolean result = demonstrateLengthEquality(length1, length2);
+
         System.out.println(value1 + " " + unit1 + " == " + value2 + " " + unit2 + " ? " + result);
+
         return result;
     }
     
@@ -29,8 +34,19 @@ public class QuantityMeasurementApp {
     	System.out.println(length + " -> " + convertedLength);
     	return convertedLength;
     }
+    
+    public static Length demonstrateLengthAddition(Length length1, Length length2) {
+
+        Length result = length1.add(length2);
+
+        System.out.println(length1 + " + " + length2 + " = " + result);
+
+        return result;
+    }
 
     public static void main(String[] args) {
+
+    	
         // Demonstrate Feet and Inches comparison
         demonstrateLengthComparison(
                 1.0, Length.LengthUnit.FEET,
@@ -76,6 +92,34 @@ public class QuantityMeasurementApp {
         // Demonstrate conversion from Feet to Inches
         Length fromLength = new Length(502, LengthUnit.FEET);
         demonstrateLengthConversion(fromLength, LengthUnit.INCHES);
+        
+        // Demonstrate Length Addition
+
+        System.out.println("\n---- Length Addition Demonstrations ----");
+
+        // 1 Foot + 12 Inches = 2 Feet
+        demonstrateLengthAddition(
+                new Length(1.0, Length.LengthUnit.FEET),
+                new Length(12.0, Length.LengthUnit.INCHES)
+        );
+
+        // 1 Yard + 3 Feet
+        demonstrateLengthAddition(
+                new Length(1.0, Length.LengthUnit.YARDS),
+                new Length(3.0, Length.LengthUnit.FEET)
+        );
+
+        // 100 Centimeters + 1 Foot
+        demonstrateLengthAddition(
+                new Length(100.0, Length.LengthUnit.CENTIMETERS),
+                new Length(1.0, Length.LengthUnit.FEET)
+        );
+
+        // Same unit addition
+        demonstrateLengthAddition(
+                new Length(5.0, Length.LengthUnit.FEET),
+                new Length(3.0, Length.LengthUnit.FEET)
+        );
         
     }
 }

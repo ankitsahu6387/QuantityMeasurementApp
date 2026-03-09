@@ -11,6 +11,7 @@ public class Length {
 		CENTIMETERS(0.393701);
 		
 		private final double conversionFactor;
+		
 		LengthUnit(double conversionFactor) {
 			this.conversionFactor = conversionFactor;
 		}
@@ -46,6 +47,7 @@ public class Length {
 	
     @Override
     public int hashCode() {
+    	
         return Double.hashCode(convertToBaseUnit());
     }
 	
@@ -53,6 +55,7 @@ public class Length {
 		if (targetUnit == null) {
 			throw new IllegalArgumentException("TargetLength cannot be null.");
 		}
+		
 		// find base length
 		double baseLength = this.convertToBaseUnit();
 		
@@ -62,7 +65,38 @@ public class Length {
 		
 		// round off to 2 decimal places
 		targetLength = (double) Math.round(targetLength * 100) / 100;
+		
 		return new Length(targetLength, targetUnit);
+	}
+	
+	private double convertFromBaseToTargetUnit(double lengthInInches, LengthUnit targetUnit) {
+
+	    if (targetUnit == null) {
+	        throw new IllegalArgumentException("Target unit cannot be null");
+	    }
+
+	    double convertedValue = lengthInInches / targetUnit.getConversionFactor();
+
+	    // round to 2 decimal places
+	    convertedValue = (double) Math.round(convertedValue * 100) / 100;
+
+	    return convertedValue;
+	}
+	
+	public Length add(Length thatLength) {
+
+	    if (thatLength == null) {
+	        throw new IllegalArgumentException("Length cannot be null");
+	    }
+
+	    double base1 = this.convertToBaseUnit();
+	    double base2 = thatLength.convertToBaseUnit();
+
+	    double sumInBase = base1 + base2;
+
+	    double result = convertFromBaseToTargetUnit(sumInBase, this.unit);
+
+	    return new Length(result, this.unit);
 	}
 	
 	@Override
@@ -71,12 +105,16 @@ public class Length {
 	}
 	
 	public static void main(String[] args) {
+		
 		Length length1 = new Length(1.0, LengthUnit.FEET);
 		Length length2 = new Length(12, LengthUnit.INCHES);
-		System.out.println("Are lengths equal? " + length1.equals(length2));		
+		System.out.println("Are lengths equal? " + length1.equals(length2));
+		
+		
 		Length length3 = new Length(1.0, LengthUnit.YARDS);
 		Length length4 = new Length(36.0, LengthUnit.INCHES);
 		System.out.println("Are lengths equal? " + length3.equals(length4));
+		
 		
 		Length length5 = new Length(100.0, LengthUnit.CENTIMETERS);
 		Length length6 = new Length(39.3701, LengthUnit.INCHES);
