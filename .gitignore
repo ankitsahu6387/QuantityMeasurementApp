@@ -1,1 +1,6 @@
 /target/
+.mvn/
+.settings/
+.classpath
+.project
+README.md
