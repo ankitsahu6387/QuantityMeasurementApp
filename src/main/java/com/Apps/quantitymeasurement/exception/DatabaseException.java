@@ -1,0 +1,8 @@
+package com.Apps.quantitymeasurement.exception;
+
+public class DatabaseException extends RuntimeException {
+
+    public DatabaseException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
