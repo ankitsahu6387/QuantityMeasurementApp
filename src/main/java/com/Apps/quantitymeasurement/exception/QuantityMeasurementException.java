@@ -2,8 +2,6 @@ package com.Apps.quantitymeasurement.exception;
 
 public class QuantityMeasurementException extends RuntimeException {
 
-    private static final long serialVersionUID = 1L;
-
     public QuantityMeasurementException(String message) {
         super(message);
     }
