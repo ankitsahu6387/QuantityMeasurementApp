@@ -2,6 +2,7 @@ package com.Apps.quantitymeasurement.service;
 
 import org.springframework.stereotype.Service;
 
+import com.Apps.quantitymeasurement.dto.QuantityDTO;
 import com.Apps.quantitymeasurement.dto.QuantityInputDTO;
 import com.Apps.quantitymeasurement.entity.QuantityMeasurementEntity;
 import com.Apps.quantitymeasurement.repository.QuantityMeasurementRepository;
@@ -40,8 +41,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
