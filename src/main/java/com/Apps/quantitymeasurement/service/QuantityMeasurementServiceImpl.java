@@ -124,8 +124,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
@@ -155,8 +155,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         IMeasurable unit1 = getUnit(q1.getMeasurementType(), q1.getUnit());
         IMeasurable unit2 = getUnit(q2.getMeasurementType(), q2.getUnit());
@@ -201,8 +201,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     private void setCommonFields(QuantityMeasurementEntity entity, QuantityInputDTO input) {
 
-        var q1 = input.getThisQuantityDTO();
-        var q2 = input.getThatQuantityDTO();
+        QuantityDTO q1 = input.getThisQuantityDTO();
+        QuantityDTO q2 = input.getThatQuantityDTO();
 
         entity.setThisValue(q1.getValue());
         entity.setThisUnit(q1.getUnit());
