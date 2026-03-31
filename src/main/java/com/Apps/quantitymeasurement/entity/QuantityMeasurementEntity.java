@@ -1,8 +1,8 @@
 package com.Apps.quantitymeasurement.entity;
 
 import jakarta.persistence.*;
+
 import lombok.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "quantity_measurements")
@@ -28,12 +28,8 @@ public class QuantityMeasurementEntity {
     private Double resultValue;
     private String resultUnit;
 
-    private String resultString;
-
-    private boolean error;
-    private String errorMessage;
-
-    private LocalDateTime createdAt;
+    
+  
 
 	public Double getThisValue() {
 		return thisValue;
@@ -107,37 +103,12 @@ public class QuantityMeasurementEntity {
 		this.resultUnit = resultUnit;
 	}
 
-	public String getResultString() {
-		return resultString;
-	}
+	
 
-	public void setResultString(String resultString) {
-		this.resultString = resultString;
-	}
+	
 
-	public boolean isError() {
-		return error;
-	}
-
-	public void setError(boolean error) {
-		this.error = error;
-	}
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
+	
+	
 
  
 }

@@ -1,11 +1,13 @@
 package com.Apps.quantitymeasurement;
 
+
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.*;
 
-import com.Apps.quantitymeasurement.dto.QuantityInputDTO;
 import com.Apps.quantitymeasurement.dto.QuantityDTO;
+import com.Apps.quantitymeasurement.dto.QuantityInputDTO;
 import com.Apps.quantitymeasurement.entity.QuantityMeasurementEntity;
 import com.Apps.quantitymeasurement.repository.QuantityMeasurementRepository;
 import com.Apps.quantitymeasurement.service.QuantityMeasurementServiceImpl;
@@ -61,7 +63,7 @@ public class QuantityMeasurementAppTest {
 
         QuantityMeasurementEntity result = service.compare(input);
 
-        assertEquals("true", result.getResultString());
+        assertEquals(1.0, result.getResultValue());
     }
 
     //  DIVIDE TEST
@@ -112,6 +114,6 @@ public class QuantityMeasurementAppTest {
 
         QuantityMeasurementEntity result = service.compare(input);
 
-        assertEquals("true", result.getResultString());
+        assertEquals(1.0, result.getResultValue());
     }
 }

@@ -15,7 +15,6 @@ public interface QuantityMeasurementRepository
 
     List<QuantityMeasurementEntity> findByThisMeasurementType(String measurementType);
 
-    long countByOperationAndErrorFalse(String operation);
+    long countByOperation(String operation);
 
-    List<QuantityMeasurementEntity> findByErrorTrue();
 }

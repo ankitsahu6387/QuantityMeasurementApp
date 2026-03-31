@@ -1,0 +1,34 @@
+package com.Apps.quantitymeasurement.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.Apps.quantitymeasurement.dto.LoginDTO;
+import com.Apps.quantitymeasurement.dto.RegisterDTO;
+import com.Apps.quantitymeasurement.service.UserService;
+
+@RestController
+@RequestMapping("/api/v1/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public String register(@RequestBody RegisterDTO dto) {
+        return userService.register(dto);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDTO dto) {
+        return userService.login(dto);
+    }
+    @GetMapping("/check")
+    public String open() {
+        return "Working";
+    }
+}
