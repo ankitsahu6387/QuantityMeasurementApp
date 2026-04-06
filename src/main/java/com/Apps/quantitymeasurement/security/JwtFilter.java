@@ -16,15 +16,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-	@Override
-	protected boolean shouldNotFilter(HttpServletRequest request) {
-	    String path = request.getServletPath();
-
-	    return path.startsWith("/api/v1/users"); //skip login/register
-	}
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+
+        return path.startsWith("/api/v1/users") ||
+               path.startsWith("/oauth2") ||
+               path.startsWith("/login");
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

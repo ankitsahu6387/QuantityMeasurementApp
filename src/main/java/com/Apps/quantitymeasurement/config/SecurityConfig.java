@@ -10,6 +10,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.Apps.quantitymeasurement.security.JwtFilter;
+import com.Apps.quantitymeasurement.security.OAuth2SuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -17,20 +18,36 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Autowired
+    private OAuth2SuccessHandler oAuth2SuccessHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
     	http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/v1/users/**").permitAll()  // LOGIN + REGISTER OPEN
-            .requestMatchers("/api/v1/quantities/**").authenticated()
+            .requestMatchers("/api/v1/users/**").permitAll()
+            .requestMatchers("/oauth2/**", "/login/**").permitAll()
+
+            // ONLY THIS endpoint secured
+            .requestMatchers("/api/v1/quantities/history/**").authenticated()
+
+            // rest quantities open
+            .requestMatchers("/api/v1/quantities/**").permitAll()
+
             .anyRequest().permitAll()
+        )
+        .oauth2Login(oauth -> oauth
+            .successHandler(oAuth2SuccessHandler)
         )
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+        
+        
     }
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

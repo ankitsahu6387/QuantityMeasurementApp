@@ -1,6 +1,7 @@
 package com.Apps.quantitymeasurement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import com.Apps.quantitymeasurement.dto.LoginDTO;
 import com.Apps.quantitymeasurement.dto.RegisterDTO;
 import com.Apps.quantitymeasurement.service.UserService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {

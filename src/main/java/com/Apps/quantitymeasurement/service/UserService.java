@@ -22,7 +22,7 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    // REGISTER
+    //  REGISTER (LOCAL USER)
     public String register(RegisterDTO dto) {
 
         if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
@@ -32,26 +32,30 @@ public class UserService {
         User user = new User();
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
-
-        // HASH PASSWORD HERE
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setProvider("LOCAL"); //  IMPORTANT
 
         userRepository.save(user);
 
         return "User Registered Successfully";
     }
 
-    // LOGIN
+    // LOGIN (LOCAL USER)
     public String login(LoginDTO dto) {
 
         User user = userRepository.findByEmail(dto.getEmail()).orElse(null);
 
         if (user == null) {
-            return "User not found ";
+            return "User not found";
+        }
+
+        //  IMPORTANT: prevent Google users from logging via password
+        if ("GOOGLE".equals(user.getProvider())) {
+            return "Please login using Google";
         }
 
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            return "Invalid password ";
+            return "Invalid password";
         }
 
         return jwtUtil.generateToken(user.getEmail());

@@ -12,7 +12,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "AnkitSahuSecurityKeyAnkitSahuSecurityKey";
+    private final String SECRET = "HarshdeepSinghSecurityKeyHarshdeepSinghSecurityKey";
 
     private Key getKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
