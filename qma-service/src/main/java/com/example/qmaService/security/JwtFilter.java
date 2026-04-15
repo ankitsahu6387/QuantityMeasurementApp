@@ -48,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
 
         } else {
-            // ❌ DO NOTHING (VERY IMPORTANT)
+            //  DO NOTHING (VERY IMPORTANT)
             SecurityContextHolder.clearContext();
         }
 

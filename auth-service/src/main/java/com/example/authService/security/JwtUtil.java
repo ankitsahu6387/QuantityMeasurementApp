@@ -11,7 +11,7 @@ import java.security.Key;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "HarshdeepSinghSecurityKeyHarshdeepSinghSecurityKey";
+    private final String SECRET = "AnkitSecurityKeyAnkitSecurityKey";
 
     private Key getKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
