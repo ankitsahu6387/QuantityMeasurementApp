@@ -60,8 +60,5 @@ public class User {
 
 	public void setProvider(String provider) {
 		this.provider = provider;
-	}
-
-
-	
+	}	
 }

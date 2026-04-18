@@ -29,13 +29,6 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/v1/users/**").permitAll()
             .requestMatchers("/oauth2/**", "/login/**").permitAll()
-
-            // ONLY THIS endpoint secured
-//            .requestMatchers("/api/v1/quantities/history/**").authenticated()
-
-            // rest quantities open
-//            .requestMatchers("/api/v1/quantities/**").permitAll()
-
             .anyRequest().permitAll()
         )
         .oauth2Login(oauth -> oauth
@@ -43,9 +36,7 @@ public class SecurityConfig {
         )
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-        
-        
+        return http.build();        
     }
     
     @Bean

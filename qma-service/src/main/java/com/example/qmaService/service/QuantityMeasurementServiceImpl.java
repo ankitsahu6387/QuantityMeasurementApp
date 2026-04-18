@@ -105,48 +105,6 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         return repository.save(entity);
     }
     
-//    //convert
-//    @Override
-//    public QuantityMeasurementEntity convert(QuantityInputDTO input) {
-//
-//        QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
-//
-//        QuantityDTO from = input.getThisQuantityDTO();
-//        QuantityDTO q2 = input.getThatQuantityDTO(); // target unit
-//        
-//        if (q2 == null || q2.getUnit() == null) {
-//            throw new InvalidUnitException("Target unit is required");
-//        }
-//
-//        if (!from.getMeasurementType().equalsIgnoreCase(q2.getMeasurementType())) {
-//            throw new MeasurementMismatchException("Measurement types must be same");
-//        }
-//
-//        // Source unit
-//        IMeasurable fromUnit = getUnit(from.getMeasurementType(), from.getUnit());
-//
-//        // Target unit
-//        IMeasurable toUnit = getUnit(q2.getMeasurementType(), q2.getUnit());
-//
-//        // Convert to base
-//        double baseValue = fromUnit.convertToBaseUnit(from.getValue());
-//
-//        // Convert to target
-//        double result = toUnit.convertFromBaseUnit(baseValue);
-//
-//        // Set entity
-//        entity.setThisValue(from.getValue());
-//        entity.setThisUnit(from.getUnit());
-//        entity.setThisMeasurementType(from.getMeasurementType());
-//
-//        entity.setResultValue(result);
-//        entity.setResultUnit(q2.getUnit());
-//        entity.setOperation("CONVERT");
-//
-//        return repository.save(entity);
-//    }
-    
-    
     @Override
     public QuantityMeasurementEntity convert(QuantityInputDTO input) {
 
@@ -340,9 +298,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         entity.setThisMeasurementType(q1.getMeasurementType());
         String email = getLoggedInEmail();
 
-//        if (email != null) {
-//            entity.setEmail(email);
-//        }
+
         if (q2 != null) {
             entity.setThatValue(q2.getValue());
             entity.setThatUnit(q2.getUnit());

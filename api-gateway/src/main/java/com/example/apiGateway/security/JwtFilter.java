@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.cloud.gateway.filter.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-
 @Component
 public class JwtFilter implements GlobalFilter {
 
@@ -18,8 +16,6 @@ public class JwtFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
         String path = exchange.getRequest().getURI().getPath();
-
-        
 
         //  ONLY exact history APIs secure
         if (path.startsWith("/api/v1/quantities/history")) {
@@ -39,7 +35,6 @@ public class JwtFilter implements GlobalFilter {
             }
         }
 
-       
         return chain.filter(exchange);
     }
 }
